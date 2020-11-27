@@ -12,12 +12,72 @@ namespace ServiceReservasi
     public interface IService1
     {
         [OperationContract]
-        string GetData(int value);
+        string pemesanan(string IDPemesanan, string NamaCustomer, string NoTelpon, int JumlahPemesanan, string IDLokasi); //methot
 
         [OperationContract]
-        CompositeType GetDataUsingDataContract(CompositeType composite);
+        string editPemesanan(string IDPemesanan, string NamaCustomer);
 
-        // TODO: Add your service operations here
+        [OperationContract]
+        string deletePemesanan(string IDPemesanan);
+
+        [OperationContract]
+        List<CekLokasi> ReviewLokasi();
+
+        [OperationContract]
+        List<DetailLokasi> DetailLokasi();
+
+        [OperationContract]
+        List<Pemesanan> Pemesanan();
+
+   
+    }
+
+    [DataContract]
+    public class CekLokasi
+    {
+        [DataMember]
+        public string IDLokasi { get; set; }
+
+        [DataMember]
+        public string NamaLokasi { get; set; }
+
+        [DataMember]
+        public string DeskripsiSingkat { get; set; }
+    }
+
+    [DataContract]
+    public class DetailLokasi
+    {
+        [DataMember]
+        public string IDLokasi { get; set; }
+
+        [DataMember]
+        public string NamaLokasi { get; set; }
+
+        [DataMember]
+        public string DeskripsiFull { get; set; }
+
+        [DataMember]
+        public int Kuota { get; set; }
+    }
+
+    [DataContract]
+    public class Pemesanan
+    {
+        [DataMember]
+        public string IDPemesan { get; set; }
+
+        [DataMember]
+        public string NamaCustomer { get; set; }
+
+        [DataMember]
+        public string NoTelpon { get; set; }
+
+        [DataMember]
+        public int JumlahPemesanan { get; set; }
+
+        [DataMember]
+        public string IDLokasi { get; set; }
     }
 
     // Use a data contract as illustrated in the sample below to add composite types to service operations.
