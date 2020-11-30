@@ -12,10 +12,10 @@ namespace ServiceReservasi
     public interface IService1
     {
         [OperationContract]
-        string pemesanan(string IDPemesanan, string NamaCustomer, string NoTelpon, int JumlahPemesanan, string IDLokasi); //methot
+        string pemesanan(string IDPemesanan, string NamaCustomer, string Notelpon, int JumlahPemesanan, string IDLokasi); //method //proses input data
 
         [OperationContract]
-        string editPemesanan(string IDPemesanan, string NamaCustomer);
+        string editPemesanan(string IDPemesanan, string NamaCustomer, string No_telpon);
 
         [OperationContract]
         string deletePemesanan(string IDPemesanan);
@@ -26,12 +26,15 @@ namespace ServiceReservasi
         [OperationContract]
         List<DetailLokasi> DetailLokasi();
 
+
         [OperationContract]
         List<Pemesanan> Pemesanan();
 
-   
+        // TODO: Add your service operations here
     }
 
+    // Use a data contract as illustrated in the sample below to add composite types to service operations.
+    // You can add XSD files into the project. After building the project, you can directly use the data types defined there, with the namespace "ServiceReservasi.ContractType".
     [DataContract]
     public class CekLokasi
     {
@@ -43,9 +46,9 @@ namespace ServiceReservasi
 
         [DataMember]
         public string DeskripsiSingkat { get; set; }
-    }
 
-    [DataContract]
+
+    }
     public class DetailLokasi
     {
         [DataMember]
@@ -55,17 +58,16 @@ namespace ServiceReservasi
         public string NamaLokasi { get; set; }
 
         [DataMember]
-        public string DeskripsiFull { get; set; }
+        public string DeskripsFull { get; set; }
 
         [DataMember]
         public int Kuota { get; set; }
-    }
 
-    [DataContract]
+    }
     public class Pemesanan
     {
         [DataMember]
-        public string IDPemesan { get; set; }
+        public string IDPemesanan { get; set; }
 
         [DataMember]
         public string NamaCustomer { get; set; }
@@ -77,29 +79,6 @@ namespace ServiceReservasi
         public int JumlahPemesanan { get; set; }
 
         [DataMember]
-        public string IDLokasi { get; set; }
-    }
-
-    // Use a data contract as illustrated in the sample below to add composite types to service operations.
-    // You can add XSD files into the project. After building the project, you can directly use the data types defined there, with the namespace "ServiceReservasi.ContractType".
-    [DataContract]
-    public class CompositeType
-    {
-        bool boolValue = true;
-        string stringValue = "Hello ";
-
-        [DataMember]
-        public bool BoolValue
-        {
-            get { return boolValue; }
-            set { boolValue = value; }
-        }
-
-        [DataMember]
-        public string StringValue
-        {
-            get { return stringValue; }
-            set { stringValue = value; }
-        }
+        public string Lokasi { get; set; }
     }
 }
